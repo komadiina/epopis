@@ -1,0 +1,43 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Baze podataka - specifikacija projektnog zadatka}
+\author{Ognjen Komadina, br. ind. 1163/20}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Aplikacija \textit{ePopis} predstavlja konceptualnu, naivnu realizaciju sistema za izvršavanje popisa i održavanje zapisa potrošene električne energije u domaćinstvima. Glavni akteri domena problema su potrošač, distributer i snabdjevač, kao i električar - radnik koji vrši pomenuti popis.
+U domenu rješenja kog obuhvata dotični sistem, bitno je pojasniti glavne nedoumice. Sistem ne pruža podršku detaljne specifikacije, kao ni potrebne legislacije u stvarnom okruženju, nego samo apstrahovan proces vršenja procesa popisivanja potrošnje električne energije. Pojam potrošača je apstrahovanje potrošnog mjesta, kako javni lokal možemo posmatrati potrošačem, tako i privatno domaćinstvo možemo posmatrati potrošačem.
+\end{abstract}
+
+
+\section{ePopis}
+\subsection{Informacione potrebe sistema}
+Sistem treba minimalno inkorporirati sledeće klase: potrošač, električar, knjigovođa, distributer, snabdjevač, predračun, račun, (električni) ormar i mjesto. Potrošač jeste apstrakcija potrošnog mjesta. Električar jeste javno lice zaposleno u distribucionoj jedinici, koje vrši provjeru trenutnog stanja potrošnje potrošača, na brojilu u električnom ormaru, i evidentira istu u predračun. Knjigovođa je javno lice koje formira račun na osnovu dobijenog predračuna. Distributer je posrednik u sprovodnji električne energije do potrošača. Snabdjevač predstavlja početni član u hijerarhiji snabdjevanja, tačnije distribuira proizvedenu električnu energije do distribucione jedinice (distributera). Potrošač može naknadno ili prijevremeno platiti trošak. Potrošač može podnijeti zahtjev za ugradnju trofaznog priključka na potrošnom mjestu. Potrošač može kasniti sa otplaćivanjem dugovanja maksimalno tri mjeseca, nakon čega se obustavlja dovod električne energije istom. Knjigovođa dobijeni predračun obrađuje i smješta u lokalnu arhivu za dalje procesiranje. Električar i knjigovođa moraju biti zaposleni kod određenog distributera.
+
+\subsection{Specifikacija učestvujućih klasa}
+Potrošač je osoba koju karakteriše naziv, JIB i kontakt izvor. 
+Električar je osoba koju karakteriše ime, prezime i JMBG.
+Knjigovođa je osoba koju karakteriše ime, prezime i JMBG.
+Distributer je ispostava električne energije, a karakterišu je naziv, vrsta preduzeća, napon distribuirane električne energije, kao i mjesto. 
+Snabdjevač je preduzeće zaduženo za proizvodnju električne energije, a okarakterisano je imenom, vrstom preduzeća, naponom proizvedene električne energije, načinom akumuliranja električne energije, kao i mjestom.
+Predračun je formiran od strane električara, a sadrži zapis o količini potrošene energije za dati tekuči period.
+Račun je formiran od strane knjigovođe na osnovu dobijenog predračuna, kao i o (ne)postojećim dugovanjima potrošača, a sadrži informacije o potrošenoj energiji i dugovanju za tekući period, kao i o prethodnim dugovanjima. 
+Električni ormar je komponenta koja u sistemu predstavlja kompoziciju više elemenata, poput brojila aktuelne, potrošene, električne energije i prisustva trofaznog priključka. 
+Mjesto je klasa koju karakteriše naziv i poštanski broj.
+
+\end{document}
