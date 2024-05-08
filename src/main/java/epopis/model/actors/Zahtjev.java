@@ -16,4 +16,8 @@ public class Zahtjev {
     protected Boolean odobren;
     @NonNull protected Integer fk_DISTRIBUTER_idDistributer;
     @NonNull protected String fk_POTROSAC_PIB;
+
+    public Zahtjev(Integer pk_idZahtjev) {
+        this.pk_idZahtjev = pk_idZahtjev;
+    }
 }

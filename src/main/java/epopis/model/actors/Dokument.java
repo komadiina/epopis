@@ -16,4 +16,10 @@ public class Dokument {
     @NonNull protected Date datumIzdavanja;
     @NonNull protected String fk_KNJIGOVODJA_JMBG;
     @NonNull protected String fk_POTROSAC_PIB;
+
+    public Dokument(Integer pk_idDokument) {
+        this.pk_idDokument = pk_idDokument;
+    }
+
+
 }

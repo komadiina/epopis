@@ -14,4 +14,8 @@ public class Snabdjevac {
     @NonNull private Double napon;
     @NonNull private String telefon;
     @NonNull private String fk_MJESTO_posta;
+
+    public Snabdjevac(Integer pk_idSnabdjevac) {
+        this.pk_idSnabdjevac = pk_idSnabdjevac;
+    }
 }

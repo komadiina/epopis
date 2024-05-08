@@ -8,7 +8,11 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Mjesto {
+public class Mjesto  {
     @NonNull private String pk_posta;
     @NonNull private String naziv;
+
+    public Mjesto(@NonNull String pk_posta) {
+        this.pk_posta = pk_posta;
+    }
 }

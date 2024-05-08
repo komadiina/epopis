@@ -1,24 +1,33 @@
 package epopis.model.util;
 
-import lombok.*;
-
+import epopis.model.reflection.Factory;
 import java.util.List;
-import java.util.function.Function;
 
-@NoArgsConstructor
+// T implements Parser<T>
+// T obj -> obj.parse(ResultSet rs)
+// return T;
+
 public class SQLDriver<T> implements DAO<T> {
+    private final Factory<T> factory;
+
+    public SQLDriver(Factory<T> factory) {
+        this.factory = factory;
+    }
+
     @Override
     public List<T> getAll() {
         return List.of();
     }
 
     @Override
-    public T read(Object id, Function<Object, T> constructor) {
+    public T read(Object id) {
         StatementEngine<T> se = new StatementEngine<>();
-        T instance = constructor.apply(id);
+        T instance = factory.create(id);
         String SQL_QUERY = se.generateSelect(instance);
 
+        // TODO
         System.out.println(SQL_QUERY);
+
         return null;
     }
 
@@ -27,7 +36,9 @@ public class SQLDriver<T> implements DAO<T> {
         StatementEngine<T> se = new StatementEngine<>();
         String SQL_QUERY = se.generateInsert(m);
 
+        // TODO
         System.out.println(SQL_QUERY);
+
         return 0;
     }
 
@@ -36,17 +47,22 @@ public class SQLDriver<T> implements DAO<T> {
         StatementEngine<T> se = new StatementEngine<>();
         String SQL_QUERY = se.generateUpdate(m, id); // update m primary key with id's value
 
+        // TODO
         System.out.println(SQL_QUERY);
+
         return 0;
     }
 
     @Override
-    public int delete(Object id, Function<Object, T> constructor) {
+    public int delete(Object id) {
         StatementEngine<T> se = new StatementEngine<>();
-        T instance = constructor.apply(id);
+        T instance = factory.create(id);
         String SQL_QUERY = se.generateDelete(instance);
 
+        // TODO
         System.out.println(SQL_QUERY);
+
+
         return 0;
     }
 }
