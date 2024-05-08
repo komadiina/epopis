@@ -3,11 +3,15 @@ package epopis.model.actors;
 import lombok.*;
 
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @ToString
 public class Iskljucenje extends Zahtjev {
     @NonNull private Integer fk_ZAHTJEV_idZahtjev;
+
+    public Iskljucenje(@NonNull Integer idZahtjev) {
+        super(idZahtjev);
+        this.fk_ZAHTJEV_idZahtjev = idZahtjev;
+    }
 }

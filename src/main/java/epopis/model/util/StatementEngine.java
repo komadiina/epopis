@@ -22,10 +22,11 @@ public class StatementEngine<T> {
         if (id == null) {
             id = getFieldValue(obj, getPrimaryKeyField(obj));
         }
+
         // MySQL allows integer types to be encapsulated in quotes, wow
-        // possibly hotfix this when shit breaks
-//        if (id instanceof String)
-//            id = reassureFormatting((String)id);
+        // TODO possibly hotfix this when shit breaks
+        // if (id instanceof String)
+        //      id = reassureFormatting((String)id);
 
         return String.format("UPDATE %s SET %s WHERE %s=%s",
                 obj.getClass().getSimpleName().toLowerCase(),                            // entity table
@@ -50,7 +51,13 @@ public class StatementEngine<T> {
     }
 
     public String generateDelete(T obj) {
-        return String.format("");
+        Class<?> c = obj.getClass();
+
+        return String.format("DELETE * FROM %S WHERE %s = %s",
+                c.getSimpleName().toLowerCase(),
+                stripPrefixes(getAssignedFieldValues(obj, false)),
+                stripPrefixes(getPrimaryKeyField(obj))
+                ); // TODO
     }
 
     public String getPrimaryKeyField(@NotNull T obj) {
@@ -129,7 +136,10 @@ public class StatementEngine<T> {
 
     public String formatSQLQueryValues(@NotNull List<String> values) {
         StringJoiner joiner = new StringJoiner(", ");
-        values.forEach(joiner::add);
+        List<String> deprefixed = new ArrayList<>();
+        for (String val : values)
+                deprefixed.add(stripPrefixes(val));
+        deprefixed.forEach(joiner::add);
         return joiner.toString();
     }
 

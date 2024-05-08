@@ -13,4 +13,8 @@ public class Potrosac {
     @NonNull private String naziv;
     @NonNull private String telefon;
     @NonNull private String fk_MJESTO_posta;
+
+    public Potrosac(@NonNull String pk_PIB) {
+        this.pk_PIB = pk_PIB;
+    }
 }

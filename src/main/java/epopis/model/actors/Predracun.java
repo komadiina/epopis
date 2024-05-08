@@ -14,4 +14,8 @@ public class Predracun {
     @NonNull private String fk_ELEKTRICAR_JMBG;
     @NonNull private String fk_KNJIGOVODJA_JMBG;
     @NonNull private String fk_POTROSAC_PIB;
+
+    public Predracun(Integer pk_idPredracun) {
+        this.pk_idPredracun = pk_idPredracun;
+    }
 }
