@@ -1,6 +1,10 @@
 package epopis.model.actors;
 
+import epopis.model.reflection.Parser;
 import lombok.*;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Getter
 @Setter
@@ -8,7 +12,13 @@ import lombok.*;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class Administrator {
-    @NonNull private String username;
+public class Administrator implements Parser {
+    @NonNull private String pk_username;
     private String password;
+
+    @Override
+    public void parse(ResultSet rs) throws SQLException {
+        pk_username = rs.getString("username");
+        password = rs.getString("password");
+    }
 }

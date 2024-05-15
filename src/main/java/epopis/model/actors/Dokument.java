@@ -1,8 +1,11 @@
 package epopis.model.actors;
 
+import epopis.model.reflection.Parser;
 import lombok.*;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -10,7 +13,7 @@ import java.sql.Date;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Dokument {
+public class Dokument implements Parser {
     protected Integer pk_idDokument;
     @NonNull protected String poziv;
     @NonNull protected Date datumIzdavanja;
@@ -21,5 +24,12 @@ public class Dokument {
         this.pk_idDokument = pk_idDokument;
     }
 
-
+    @Override
+    public void parse(ResultSet rs) throws SQLException {
+        pk_idDokument = rs.getInt("idDokument");
+        poziv = rs.getString("poziv");
+        datumIzdavanja = rs.getDate("datumIzdavanja");
+        fk_KNJIGOVODJA_JMBG = rs.getString("KNJIGOVODJA_JMBG");
+        fk_POTROSAC_PIB = rs.getString("POTROSAC_PIB");
+    }
 }

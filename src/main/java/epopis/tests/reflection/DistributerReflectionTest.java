@@ -2,9 +2,7 @@ package epopis.tests.reflection;
 
 import epopis.model.actors.Distributer;
 import epopis.model.actors.Potrosac;
-import epopis.model.util.StatementEngine;
-
-import javax.swing.plaf.nimbus.State;
+import epopis.db.querying.StatementEngine;
 
 public class DistributerReflectionTest {
     public static void main(String[] args) {

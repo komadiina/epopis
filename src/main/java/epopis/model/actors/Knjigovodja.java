@@ -1,6 +1,10 @@
 package epopis.model.actors;
 
+import epopis.model.reflection.Parser;
 import lombok.*;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -8,7 +12,7 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Knjigovodja  {
+public class Knjigovodja implements Parser {
     @NonNull private String pk_JMBG;
     @NonNull private String PIB;
     @NonNull private String ime;
@@ -16,5 +20,13 @@ public class Knjigovodja  {
 
     public Knjigovodja(@NonNull String pk_JMBG) {
         this.pk_JMBG = pk_JMBG;
+    }
+
+    @Override
+    public void parse(ResultSet rs) throws SQLException {
+        pk_JMBG = rs.getString("JMBG");
+        PIB = rs.getString("PIB");
+        ime = rs.getString("ime");
+        prezime = rs.getString("prezime");
     }
 }
