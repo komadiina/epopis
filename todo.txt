@@ -1,0 +1,42 @@
+procedure:
+	mjesecna provjera kasnjenja
+	provjera kredencijala
+	slanje zahtjeva
+	slanje odgovora
+	
+(triger) prikaz opomene
+pogledi
+indeksi
+
+
+-- meni
+elektricar
+	- popisi (koristenjem ormara)
+	- napravi predracun
+	- posalji predracun
+	- (todo: ne moze popisati ako je popisan vec u tekucem mjesecu)
+
+knjigovodja
+	- obradi predracun (= racun)
+	- provjeri kasnjenja (?= opomena)
+	- posalji dokument (racun/opomena)
+
+potrosac
+	- registruj se
+	- posalji zahtjev (iskljucenje/prikljucenje)
+	- (todo: ugradi trofazni)
+	
+
+distributer
+	- pogledaj zahtjeve
+	- odobri/odbij aktivne (aktivan = odobren == null) zahtjeve
+		- triger automatski salje
+
+administrator
+	- dodaj mjesto
+	- dodaj snabdjevaca
+	- dodaj distributera
+
+landing
+	- login (potrosac/elektricar/knjigovodja/distributer)
+	- registracija (potrosac)
