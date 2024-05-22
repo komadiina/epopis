@@ -1,8 +1,8 @@
 package epopis.driver.users;
 
 import epopis.model.actors.Elektricar;
-import epopis.model.reflection.specialization.ElektricarFactory;
-import epopis.model.util.SQLDriver;
+import epopis.model.reflection.factories.ElektricarFactory;
+import epopis.db.querying.SQLDriver;
 import lombok.*;
 
 @AllArgsConstructor

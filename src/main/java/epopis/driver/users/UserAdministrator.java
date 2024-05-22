@@ -1,10 +1,8 @@
 package epopis.driver.users;
 
 import epopis.model.actors.Administrator;
-import epopis.model.actors.Potrosac;
-import epopis.model.reflection.specialization.AdministratorFactory;
-import epopis.model.reflection.specialization.PotrosacFactory;
-import epopis.model.util.SQLDriver;
+import epopis.model.reflection.factories.AdministratorFactory;
+import epopis.db.querying.SQLDriver;
 import lombok.*;
 
 @AllArgsConstructor

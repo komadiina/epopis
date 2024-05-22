@@ -5,8 +5,6 @@ import epopis.driver.users.UserElektricar;
 import epopis.driver.users.UserKnjigovodja;
 import epopis.driver.users.UserPotrosac;
 
-import javax.xml.stream.FactoryConfigurationError;
-import java.security.MessageDigest;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -118,6 +116,6 @@ public class MainMenu {
         if (!status) {
             System.out.println("Previse promasenih pokusaja.");
             return;
-        } else System.out.printf("Dobrodosli, %s!\n", user.getEntity().getUsername());
+        } else System.out.printf("Dobrodosli, %s!\n", user.getEntity().getPk_username());
     }
 }
