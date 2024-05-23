@@ -3,7 +3,7 @@ package org.unibl.etf.epopis.gui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.unibl.etf.epopis.gui.views.GUI;
-import org.unibl.etf.epopis.gui.views.LoginGUI;
+import org.unibl.etf.epopis.gui.views.login.LoginGUI;
 
 public class Main extends Application {
     @Override

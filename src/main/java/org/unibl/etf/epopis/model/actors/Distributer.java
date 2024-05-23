@@ -19,6 +19,7 @@ public class Distributer implements Parser {
     @NonNull private String telefon;
     @NonNull private Integer fk_SNABDJEVAC_idSnabdjevac;
     @NonNull private String fk_MJESTO_posta;
+    @NonNull private String lozinka;
 
     public Distributer(Integer pk_idDistributer) {
         this.pk_idDistributer = pk_idDistributer;
@@ -26,11 +27,14 @@ public class Distributer implements Parser {
 
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        pk_idDistributer = rs.getInt("idDistributer");
-        naziv = rs.getString("naziv");
-        napon = rs.getDouble("napon");
-        telefon = rs.getString("telefon");
-        fk_SNABDJEVAC_idSnabdjevac = rs.getInt("SNABDJEVAC_idSnabdjevac");
-        fk_MJESTO_posta = rs.getString("MJESTO_posta");
+        if (rs.next()) {
+            pk_idDistributer = rs.getInt("idDistributer");
+            naziv = rs.getString("naziv");
+            napon = rs.getDouble("napon");
+            telefon = rs.getString("telefon");
+            fk_SNABDJEVAC_idSnabdjevac = rs.getInt("SNABDJEVAC_idSnabdjevac");
+            fk_MJESTO_posta = rs.getString("MJESTO_posta");
+            lozinka = rs.getString("lozinka");
+        }
     }
 }

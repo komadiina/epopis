@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -23,12 +24,16 @@ public class Predracun implements Parser {
         this.pk_idPredracun = pk_idPredracun;
     }
 
+
+
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        pk_idPredracun = rs.getInt("idPredracun");
-        potroseno = rs.getDouble("potroseno");
-        fk_ELEKTRICAR_JMBG = rs.getString("ELEKTRICAR_JMBG");
-        fk_KNJIGOVODJA_JMBG = rs.getString("KNJIGOVODJA_JMBG");
-        fk_POTROSAC_PIB = rs.getString("POTROSAC_PIB");
+        if (rs.next()) {
+            pk_idPredracun = rs.getInt("idPredracun");
+            potroseno = rs.getDouble("potroseno");
+            fk_ELEKTRICAR_JMBG = rs.getString("ELEKTRICAR_JMBG");
+            fk_KNJIGOVODJA_JMBG = rs.getString("KNJIGOVODJA_JMBG");
+            fk_POTROSAC_PIB = rs.getString("POTROSAC_PIB");
+        }
     }
 }

@@ -6,7 +6,7 @@ import org.unibl.etf.epopis.db.querying.StatementEngine;
 
 public class DistributerReflectionTest {
     public static void main(String[] args) {
-        Distributer d = new Distributer("distrib", 220.0, "065686717", 1, "78420");
+        Distributer d = new Distributer("distrib", 220.0, "065686717", 1, "78420", "test");
         StatementEngine<Distributer> dse = new StatementEngine<>();
 
         System.out.println(dse.generateInsert(d));
@@ -14,7 +14,7 @@ public class DistributerReflectionTest {
         System.out.println(dse.generateSelect(d));
         System.out.println("============================");
 
-        Potrosac p = new Potrosac("1507001101472", "osmica", "066315889", "78420");
+        Potrosac p = new Potrosac("1507001101472", "osmica", "066315889", "78420", "test", 1);
         StatementEngine<Potrosac> pse = new StatementEngine<>();
 
         System.out.println(pse.generateInsert(p));

@@ -24,10 +24,17 @@ abstract public class GUI {
         this.stage.hide();
     }
 
-    public void transition(GUI other) {
-        this.hide();
-        this.getStage().setScene(other.getStage().getScene());
-        other.show();
+    public static void transition(GUI from, GUI to) {
+        from.hide();
+        to.show();
+    }
+
+    public static void transition(Stage stage, GUI from, GUI to) {
+        from.setStage(stage);
+        to.setStage(stage);
+
+        from.hide();
+        to.show();
     }
 
     abstract protected void load() throws IOException;

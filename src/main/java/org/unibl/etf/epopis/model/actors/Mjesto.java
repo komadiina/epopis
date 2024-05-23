@@ -22,7 +22,9 @@ public class Mjesto implements Parser {
 
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        pk_posta = rs.getString("posta");
-        naziv = rs.getString("naziv");
+        if (rs.next()) {
+            pk_posta = rs.getString("posta");
+            naziv = rs.getString("naziv");
+        }
     }
 }

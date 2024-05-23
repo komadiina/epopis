@@ -25,7 +25,7 @@ public class SQLDriver<T extends Parser> implements DAO<T> {
     }
 
     @Override
-    public List<T> getAll() {
+    public List<T> getAll() throws SQLException {
         StatementEngine<T> se = new StatementEngine<>();
         T instance = factory.create();
         String SQL_QUERY = se.generateSelectAll(instance);
@@ -62,7 +62,7 @@ public class SQLDriver<T extends Parser> implements DAO<T> {
     }
 
     @Override
-    public T read(Object id) {
+    public T read(Object id) throws SQLException {
         StatementEngine<T> se = new StatementEngine<>();
         T instance = factory.create(id);
         String SQL_QUERY = se.generateSelect(instance);
@@ -88,12 +88,11 @@ public class SQLDriver<T extends Parser> implements DAO<T> {
             close(c, s, (ResultSet) result);
         }
 
-
         return instance;
     }
 
     @Override
-    public int create(T m) {
+    public int create(T m) throws SQLException {
         StatementEngine<T> se = new StatementEngine<>();
         String SQL_QUERY = se.generateInsert(m);
         Object result = ExecuteQuery(SQL_QUERY);
@@ -113,7 +112,7 @@ public class SQLDriver<T extends Parser> implements DAO<T> {
     }
 
     @Override
-    public int update(T m, Object id) {
+    public int update(T m, Object id) throws SQLException {
         // replace db entry of PK(id) with values(m)
         StatementEngine<T> se = new StatementEngine<>();
         String SQL_QUERY = se.generateUpdate(m, id);
@@ -133,7 +132,7 @@ public class SQLDriver<T extends Parser> implements DAO<T> {
     }
 
     @Override
-    public int delete(Object id) {
+    public int delete(Object id) throws SQLException {
         StatementEngine<T> se = new StatementEngine<>();
         T instance = factory.create(id);
         String SQL_QUERY = se.generateDelete(instance);
@@ -152,7 +151,12 @@ public class SQLDriver<T extends Parser> implements DAO<T> {
         return (int)result;
     }
 
-    private Object ExecuteQuery(String SQL_QUERY) {
+    @Override
+    public Object runQuery(String query) throws SQLException {
+        return ExecuteQuery(query);
+    }
+
+    private Object ExecuteQuery(String SQL_QUERY) throws SQLException {
         Object result;
         try {
             c = DBUtil.getConnection();
@@ -168,7 +172,7 @@ public class SQLDriver<T extends Parser> implements DAO<T> {
                     ex.getErrorCode(),
                     SQL_QUERY
                     );
-            return null;
+            throw ex;
         }
 
         return result;

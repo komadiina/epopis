@@ -18,6 +18,7 @@ public class Snabdjevac implements Parser {
     @NonNull private Double napon;
     @NonNull private String telefon;
     @NonNull private String fk_MJESTO_posta;
+    @NonNull private String lozinka;
 
     public Snabdjevac(Integer pk_idSnabdjevac) {
         this.pk_idSnabdjevac = pk_idSnabdjevac;
@@ -25,10 +26,13 @@ public class Snabdjevac implements Parser {
 
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        pk_idSnabdjevac = rs.getInt("idSnabdjevac");
-        naziv = rs.getString("naziv");
-        napon = rs.getDouble("napon");
-        telefon = rs.getString("telefon");
-        fk_MJESTO_posta = rs.getString("MJESTO_posta");
+        if (rs.next()) {
+            pk_idSnabdjevac = rs.getInt("idSnabdjevac");
+            naziv = rs.getString("naziv");
+            napon = rs.getDouble("napon");
+            telefon = rs.getString("telefon");
+            fk_MJESTO_posta = rs.getString("MJESTO_posta");
+            lozinka = rs.getString("lozinka");
+        }
     }
 }

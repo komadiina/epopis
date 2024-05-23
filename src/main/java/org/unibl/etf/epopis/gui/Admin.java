@@ -2,7 +2,7 @@ package org.unibl.etf.epopis.gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.unibl.etf.epopis.gui.views.AdminGUI;
+import org.unibl.etf.epopis.gui.views.admin.AdminGUI;
 import org.unibl.etf.epopis.gui.views.GUI;
 
 public class Admin extends Application {

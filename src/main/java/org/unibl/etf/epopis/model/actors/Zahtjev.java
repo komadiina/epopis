@@ -6,6 +6,7 @@ import lombok.*;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 @ToString
 public class Zahtjev implements Parser {
     protected Integer pk_idZahtjev;
+    @NonNull protected Boolean iskljucenje;
     @NonNull protected Date datum;
     protected Boolean odobren;
     @NonNull protected Integer fk_DISTRIBUTER_idDistributer;
@@ -26,10 +28,13 @@ public class Zahtjev implements Parser {
 
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        pk_idZahtjev = rs.getInt("idZahtjev");
-        datum = rs.getDate("datum");
-        odobren = rs.getBoolean("odobren");
-        fk_DISTRIBUTER_idDistributer = rs.getInt("DISTRIBUTER_idDistributer");
-        fk_POTROSAC_PIB = rs.getString("POTROSAC_PIB");
+        if (rs.next()) {
+            pk_idZahtjev = rs.getInt("idZahtjev");
+            iskljucenje = rs.getBoolean("iskljucenje");
+            datum = rs.getDate("datum");
+            odobren = rs.getBoolean("odobren");
+            fk_DISTRIBUTER_idDistributer = rs.getInt("DISTRIBUTER_idDistributer");
+            fk_POTROSAC_PIB = rs.getString("POTROSAC_PIB");
+        }
     }
 }

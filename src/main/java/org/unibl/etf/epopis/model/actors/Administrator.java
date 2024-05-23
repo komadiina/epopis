@@ -13,12 +13,14 @@ import java.sql.SQLException;
 @EqualsAndHashCode
 @ToString
 public class Administrator implements Parser {
-    @NonNull private String pk_username;
-    private String password;
+    @NonNull private String pk_korisnickoIme;
+    private String lozinka;
 
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        pk_username = rs.getString("username");
-        password = rs.getString("password");
+        if (rs.next()) {
+            pk_korisnickoIme = rs.getString("korisnickoIme");
+            lozinka = rs.getString("lozinka");
+        }
     }
 }

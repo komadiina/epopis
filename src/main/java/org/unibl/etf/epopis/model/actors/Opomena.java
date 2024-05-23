@@ -12,9 +12,10 @@ import java.sql.SQLException;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@ToString
+@ToString(callSuper = true)
 public class Opomena extends Dokument implements Parser {
     @NonNull private Double potroseno;
+    @NonNull private Date rok;
     @NonNull private Integer fk_DOKUMENT_idDokument;
 
     public Opomena(Integer pk_idDokument) {
@@ -26,15 +27,22 @@ public class Opomena extends Dokument implements Parser {
                    @NonNull Date datumIzdavanja,
                    @NonNull String fk_KNJIGOVODJA_JMBG,
                    @NonNull String fk_POTROSAC_PIB,
-                   @NonNull Double potroseno) {
-        super(poziv, datumIzdavanja, fk_KNJIGOVODJA_JMBG, fk_POTROSAC_PIB);
+                   @NonNull Boolean placen,
+                   @NonNull Double potroseno,
+                   @NonNull Date rok) {
+        super(poziv, datumIzdavanja, fk_KNJIGOVODJA_JMBG, fk_POTROSAC_PIB, placen);
         this.potroseno = potroseno;
+        this.rok = rok;
     }
 
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        potroseno = rs.getDouble("potroseno");
-        fk_DOKUMENT_idDokument = rs.getInt("DOKUMENT_idDokument");
+        if (rs.next()) {
+            potroseno = rs.getDouble("potroseno");
+            rok = rs.getDate("rok");
+            fk_DOKUMENT_idDokument = rs.getInt("DOKUMENT_idDokument");
+        }
+
         super.parse(rs);
     }
 }

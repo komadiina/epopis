@@ -17,7 +17,12 @@ public class UserAdministrator implements Loginnable {
 
     public boolean exists(Object id) {
         SQLDriver<Administrator> driver = new SQLDriver<>(new AdministratorFactory());
-        Administrator result = driver.read(id);
+        Administrator result = null;
+        try {
+            result = driver.read(id);
+        } catch (java.sql.SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
 
         if (result != null)
             this.entity = result;

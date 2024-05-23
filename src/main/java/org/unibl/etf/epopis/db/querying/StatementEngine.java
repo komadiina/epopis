@@ -5,15 +5,21 @@ import java.util.*;
 
 public class StatementEngine<T> {
     public String generateSelectAll(T obj) {
-        return String.format("SELECT * FROM %s", obj.getClass().getSimpleName().toLowerCase());
+        String query = String.format("SELECT * FROM %s", obj.getClass().getSimpleName().toLowerCase());
+        System.out.println(query);
+
+        return query;
     }
 
     public String generateSelect(T obj) {
-        return String.format("SELECT * FROM %s WHERE %s=%s",
-                    obj.getClass().getSimpleName().toLowerCase(),
-                    stripPrefixes(getPrimaryKeyField(obj)),
-                    getFieldValue(obj, getPrimaryKeyField(obj)) // TODO: implement setting primary key on <T> object
-            );
+        String query = String.format("SELECT * FROM %s WHERE %s = %s",
+                obj.getClass().getSimpleName().toLowerCase(),
+                stripPrefixes(getPrimaryKeyField(obj)),
+                getFieldValue(obj, getPrimaryKeyField(obj)) // TODO: implement setting primary key on <T> object
+        );
+
+        System.out.println(query);
+        return query;
     }
 
     public String generateUpdate(T obj, Object id) {
@@ -26,18 +32,20 @@ public class StatementEngine<T> {
         // if (id instanceof String)
         //      id = reassureFormatting((String)id);
 
-        return String.format("UPDATE %s SET %s WHERE %s=%s",
+        String query = String.format("UPDATE %s SET %s WHERE %s = '%s'",
                 obj.getClass().getSimpleName().toLowerCase(),                            // entity table
                 stripPrefixes(getAssignedFieldValues(obj, false)),       // formatted values
                 stripPrefixes(getPrimaryKeyField(obj)),                                 // primary key name
                 id                                                                      // primary key value
         );
+        System.out.println(query);
+
+        return query;
     }
 
     public String generateInsert(T obj) {
         Class<?> c = obj.getClass();
-
-        return String.format("INSERT INTO %s (%s) VALUES (%s)",
+        String query = String.format("INSERT INTO %s (%s) VALUES (%s)",
                 c.getSimpleName().toLowerCase(),
                 formatSQLQueryValues(
                         getFieldNames(obj)
@@ -46,16 +54,23 @@ public class StatementEngine<T> {
                         getFieldValues(obj)
                 )
         );
+        System.out.println(query);
+
+        return query;
     }
 
     public String generateDelete(T obj) {
         Class<?> c = obj.getClass();
 
-        return String.format("DELETE * FROM %S WHERE %s = %s",
+        String query = String.format("DELETE FROM %s WHERE ('%s' = %s)",
                 c.getSimpleName().toLowerCase(),
                 stripPrefixes(getAssignedFieldValues(obj, false)),
                 stripPrefixes(getPrimaryKeyField(obj))
-                ); // TODO
+        ); // TODO
+
+        System.out.println(query);
+
+        return query;
     }
 
     public String getPrimaryKeyField(T obj) {

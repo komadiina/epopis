@@ -2,7 +2,7 @@ package org.unibl.etf.epopis.model.reflection.factories;
 
 import org.unibl.etf.epopis.model.actors.Administrator;
 import org.unibl.etf.epopis.model.reflection.Factory;
-import org.unibl.etf.epopis.model.reflection.exceptions.InvalidPrimaryKeyTypeException;
+import org.unibl.etf.epopis.model.exceptions.InvalidPrimaryKeyTypeException;
 
 public class AdministratorFactory implements Factory<Administrator> {
     @Override

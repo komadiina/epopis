@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0">
+         <children>
+            <TextField layoutX="166.0" layoutY="14.0" prefHeight="25.0" prefWidth="143.0" promptText="PIB Potrosaca" />
+            <TextField layoutX="167.0" layoutY="47.0" prefHeight="25.0" prefWidth="143.0" promptText="JMBG Knjigovodje" />
+            <Button layoutX="167.0" layoutY="82.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="Izradi" />
+         </children></AnchorPane>
+    </content>
+    <expandableContent>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+    </expandableContent>
+</DialogPane>

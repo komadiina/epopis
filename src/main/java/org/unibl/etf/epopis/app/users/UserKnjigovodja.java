@@ -16,7 +16,12 @@ public class UserKnjigovodja implements Loginnable {
 
     public boolean exists(Object id) {
         SQLDriver<Knjigovodja> driver = new SQLDriver<>(new KnjigovodjaFactory());
-        Knjigovodja result = driver.read(id);
+        Knjigovodja result = null;
+        try {
+            result = driver.read(id);
+        } catch (java.sql.SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
 
         if (result != null)
             this.entity = result;

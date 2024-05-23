@@ -24,9 +24,11 @@ public class Ormar implements Parser {
 
     @Override
     public void parse(ResultSet rs) throws SQLException {
-        prikljucak = rs.getBoolean("prikljucak");
-        brojilo = rs.getDouble("brojilo");
-        iskljucen = rs.getBoolean("iskljucen");
-        fk_POTROSAC_PIB = rs.getString("POTROSAC_PIB");
+        if (rs.next()) {
+            prikljucak = rs.getBoolean("prikljucak");
+            brojilo = rs.getDouble("brojilo");
+            iskljucen = rs.getBoolean("iskljucen");
+            fk_POTROSAC_PIB = rs.getString("POTROSAC_PIB");
+        }
     }
 }
